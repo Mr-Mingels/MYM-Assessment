@@ -1,0 +1,268 @@
+.authWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.authContent {
+    width: 450px;
+    background-color: white;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #1b1b1b;
+}
+
+.authLogoWrapper {
+    min-width: 40px;
+    min-height: 45px;
+    width: 40px;
+    height: 45px;
+    background-color: #0b3d91;
+    border: 2px solid #0b3d91;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.authLogoIcon {
+    width: 22px;
+    height: 22px;
+    color: white;
+}
+
+.authTitle {
+    font-size: 22px;
+    font-weight: 500;
+    color: #1b1b1b;
+}
+
+.authOptionsWrapper {
+    margin-top: 12px;
+    padding-bottom: 12px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-bottom: 1px solid #dadada;
+    gap: 12px;
+}
+
+.authDemoLoader {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite
+}
+
+.authDemoLoader::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 2px solid #1b1b1b;
+    animation: prixClipFix 2s linear infinite;
+}
+
+.authDemoAccountTxt {
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #1b1b1b;
+    transition: color 0.2s ease-in-out;
+}
+
+.authDemoAccountTxt:hover {
+    color: #0b3d91;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes prixClipFix {
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
+    }
+
+    100% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
+    }
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    padding-top: 24px;
+    width: 100%;
+    color: #1b1b1b;
+}
+
+.authLabel {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.authRequireTag {
+    color: rgb(255, 100, 100);
+}
+
+.authFormEmailInput,
+.authFormPassWordInput {
+    color: #1b1b1b;
+    margin-bottom: 24px;
+    outline: unset;
+    padding: 8px 12px 8px 12px;
+    border: 1px solid #dadada;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.authFormEmailInput:focus,
+.authFormPassWordInput:focus {
+    border-color: #0b3d91;
+}
+
+.authFormEmailInput.field::placeholder,
+.authFormPassWordInput.field::placeholder {
+    color: rgb(255, 100, 100);
+}
+
+.authBtnsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.authBtn {
+    cursor: pointer;
+    height: 42px;
+    font-size: 14px;
+    border: 1px solid #1b1b1b;
+    background-color: #1b1b1b;
+    color: white;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-user-select: none;
+    /* Chrome, Safari and Opera */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+}
+
+.authBtn.authLoader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1b1b1b;
+}
+
+.authBtn.authLoader:hover {
+    background-color: #1b1b1b;
+}
+
+.authBtn:hover {
+    background-color: #0b3d91;
+    color: white;
+}
+
+.authPromptWrapper {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-top: 16px;
+    color: #757575;
+}
+
+.authPrompt {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #1b1b1b;
+    transition: color 0.2s ease-in-out;
+}
+
+.authPrompt:hover {
+    color: #0b3d91;
+}
+
+@media (max-width: 500px) {
+    .authContent {
+        width: calc(450px + (100vw - 500px) / 1.1);
+        padding: calc(24px + (100vw - 500px) / 22);
+    }
+
+    .authLogoWrapper {
+        min-width: calc(35px + (100vw - 500px) / 110);
+        min-height: calc(40px + (100vw - 500px) / 110);
+        width: calc(35px + (100vw - 500px) / 110);
+        height: calc(40px + (100vw - 500px) / 110);
+        margin-bottom: calc(16px + (100vw - 500px) / 50);
+    }
+
+    .authLogoIcon {
+        width: calc(20px + (100vw - 500px) / 110);
+        height: calc(20px + (100vw - 500px) / 110);
+    }
+
+    .authTitle {
+        font-size: calc(20px + (100vw - 500px) / 110);
+    }
+
+    .authDemoAccountTxt {
+        font-size: calc(11px + (100vw - 500px) / 110);
+    }
+
+    .authLabel {
+        font-size: calc(14px + (100vw - 500px) / 110);
+    }
+
+    .authFormEmailInput,
+    .authFormPassWordInput {
+        font-size: calc(13px + (100vw - 500px) / 110);
+        margin-bottom: calc(24px + (100vw - 500px) / 50);
+    }
+
+    .authBtn {
+        height: calc(40px + (100vw - 500px) / 110);
+        font-size: calc(13px + (100vw - 500px) / 110);
+    }
+
+    .authPromptWrapper {
+        font-size: calc(11px + (100vw - 500px) / 110);
+    }
+}

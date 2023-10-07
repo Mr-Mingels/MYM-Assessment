@@ -1,0 +1,175 @@
+.mainWrapper {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.mainContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 72px 48px 48px 48px;
+    max-width: 1600px;
+    gap: 32px;
+}
+
+.mainHeaderTxt {
+    color: white;
+    border-bottom: 1px solid white;
+    padding-bottom: 6px;
+    font-weight: 600;
+    width: 100%;
+    font-size: 30px;
+}
+
+.mainImg {
+    height: 100%;
+    width: 100%;
+    max-width: 600px;
+    max-height: 600px;
+    align-self: center;
+    -webkit-user-select: none;
+    /* Chrome, Safari and Opera */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    object-fit: cover;
+}
+
+.mainImgInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.mainImgTitle {
+    color: white;
+    font-weight: 500;
+    border-bottom: 1px solid white;
+    padding-bottom: 4px;
+}
+
+.mainImgDescTxt {
+    background-color: rgba(255, 255, 255, 0.603);
+    padding: 16px;
+    font-size: 15px;
+    color: black;
+}
+
+.mainCopyRightTxt {
+    color: white;
+    margin-top: 12px;
+    font-size: 12px;
+}
+
+.mainLoaderWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.mainLoader {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite
+}
+
+.mainLoader::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 4px solid #FFF;
+    animation: prixClipFix 2s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes prixClipFix {
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
+    }
+
+    100% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
+    }
+}
+
+@media (max-width: 700px) {
+    .mainContent {
+        padding-right: calc(48px + (100vw - 700px) / 10);
+        padding-left: calc(48px + (100vw - 700px) / 10);
+        padding-bottom: calc(48px + (100vw - 700px) / 10);
+    }
+
+    .mainHeaderTxt {
+        font-size: calc(30px + (100vw - 700px) / 50);
+    }
+
+    .mainImgTitle {
+        font-size: calc(24px + (100vw - 700px) / 50);
+    }
+
+    .mainImgDescTxt {
+        font-size: calc(15px + (100vw - 700px) / 100);
+    }
+
+    .mainCopyRightTxt {
+        font-size: calc(12px + (100vw - 700px) / 100);
+    }
+}
+
+@media (max-width: 500px) {
+    .mainContent {
+        gap: calc(32px + (100vw - 500px) / 16);
+    }
+
+    .mainHeaderTxt {
+        font-size: calc(24px + (100vw - 500px) / 50);
+    }
+
+    .mainImgInfoWrapper {
+        gap: calc(32px + (100vw - 500px) / 16);
+    }
+
+    .mainImgTitle {
+        font-size: calc(18px + (100vw - 500px) / 50);
+    }
+
+    .mainImgDescTxt {
+        font-size: calc(12px + (100vw - 500px) / 110);
+    }
+
+    .mainCopyRightTxt {
+        font-size: calc(9px + (100vw - 500px) / 110);
+    }
+}

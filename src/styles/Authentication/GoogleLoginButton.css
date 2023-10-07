@@ -1,0 +1,44 @@
+.googleLogInBtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 12px 4px 12px;
+    outline: none;
+    border: 1px solid #1b1b1b;
+    cursor: pointer;
+    background-color: white;
+    height: 38px;
+    font-size: 14px;
+    color: #1b1b1b;
+    -webkit-user-select: none;
+    /* Chrome, Safari and Opera */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.googleLogInBtn:hover {
+    background-color: #0b3d91;
+    color: white;
+}
+
+.googleLogoImg {
+    width: 24px;
+    height: 24px;
+}
+
+@media (max-width: 500px) {
+    .googleLogInBtn {
+        height: calc(36px + (100vw - 500px) / 110);
+        font-size: calc(13px + (100vw - 500px) / 110);
+    }
+
+    .googleLogoImg {
+        height: calc(22px + (100vw - 500px) / 110);
+        width: calc(22px + (100vw - 500px) / 110);
+    }
+}

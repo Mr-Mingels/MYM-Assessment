@@ -1,0 +1,21 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "src/server/server.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "package.json",
+        "use": "@vercel/static-build",
+        "config": { "distDir": "build" }
+      }
+    ],
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/src/server/server.js" },
+      { "source": "/static/(.*)", "destination": "/build/static/$1" },
+      { "source": "/(.*).js", "destination": "/build/$1.js" },
+      { "source": "/(.*).css", "destination": "/build/$1.css" },
+      { "source": "/(.*)", "destination": "/index.html" }
+    ]
+  }

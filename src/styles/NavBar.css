@@ -1,0 +1,170 @@
+.navBarWrapper {
+    width: 100%;
+    height: 72px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navBarContent {
+    height: 100%;
+    width: 100%;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    max-width: 1600px;
+}
+
+.navBarIconWrapper {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    color: #1b1b1b;
+    transition: color 0.2s ease-in-out;
+    margin-left: auto;
+}
+
+.navBarIconWrapper:hover {
+    color: #0b3d91;
+}
+
+.navBarIcon {
+    width: 18px;
+    height: 18px;
+}
+
+.logOutModalWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1b1b1b80;
+}
+
+.logOutModalContent {
+    width: 576px;
+    background-color: white;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #1b1b1b;
+}
+
+.logOutTitle {
+    font-size: 22px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #dadada;
+    font-weight: 500;
+    color: #1b1b1b;
+}
+
+.logOutTxtWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 24px 0 24px 0;
+    gap: 6px;
+}
+
+.logOutTxt {
+    color: #1b1b1b;
+}
+
+.logOutTxt.accountInfo {
+    font-size: 13.5px;
+}
+
+.logOutBtnsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.logOutBtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 52px;
+    width: 100%;
+    background-color: #1b1b1b;
+    border: 1px solid #1b1b1b;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    font-size: 14px;
+}
+
+.logOutBtns:hover {
+    background-color: #0b3d91;
+    color: white;
+}
+
+.logOutBtns.close {
+    background-color: white;
+    color: #1b1b1b;
+}
+
+.logOutBtns.close:hover {
+    background-color: #1b1b1b;
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .navBarContent {
+        padding-right: calc(48px + (100vw - 700px) / 10);
+        padding-left: calc(48px + (100vw - 700px) / 10);
+    }
+
+    .logOutModalContent {
+        width: calc(576px + (100vw - 700px) / 1.7);
+    }
+}
+
+@media (max-width: 500px) {
+    .navBarIconWrapper {
+        width: calc(32px + (100vw - 500px) / 110);
+        height: calc(32px + (100vw - 500px) / 110);
+    }
+
+    .navBarIcon {
+        width: calc(16px + (100vw - 500px) / 110);
+        height: calc(16px + (100vw - 500px) / 110);
+    }
+
+    .logOutModalContent {
+        width: calc(456px + (100vw - 500px) / 1.1);
+    }
+
+    .logOutTitle {
+        font-size: calc(20px + (100vw - 500px) / 110);
+    }
+
+    .logOutTxt.accountInfo {
+        font-size: calc(12.5px + (100vw - 500px) / 110);
+    }
+
+    .logOutTxt {
+        font-size: calc(15px + (100vw - 500px) / 110);
+    }
+
+    .logOutBtnsWrapper {
+        gap: calc(22px + (100vw - 500px) / 110);
+    }
+
+    .logOutBtns {
+        height: calc(48px + (100vw - 500px) / 40);
+        font-size: calc(13px + (100vw - 500px) / 110);
+    }
+}
