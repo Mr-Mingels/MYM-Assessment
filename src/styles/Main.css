@@ -37,6 +37,7 @@
     /* Internet Explorer/Edge */
     user-select: none;
     object-fit: cover;
+    border: 1px solid white;
 }
 
 .mainImgInfoWrapper {

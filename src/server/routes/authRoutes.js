@@ -80,48 +80,48 @@ router.post("/log-in-page", async (req, res, next) => {
   }
 });
 
-// Route to initiate Google OAuth authentication with specified access permissions.
-router.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
+  // Route to initiate Google OAuth authentication with specified access permissions.
+  router.get(
+    "/auth/google",
+    passport.authenticate("google", { scope: ["profile", "email"] })
+  );
 
-// Callback route for handling Google OAuth authentication results.
-router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successRedirect: `/auth/login/success`,
-    failureRedirect: `${process.env.CLIENT_URL}/auth`,
-  })
-);
+  // Callback route for handling Google OAuth authentication results.
+  router.get(
+    "/auth/google/callback",
+    passport.authenticate("google", {
+      successRedirect: `/auth/login/success`,
+      failureRedirect: `${process.env.CLIENT_URL}/auth`,
+    })
+  );
 
-// Route for post-authentication processing after successful Google OAuth authentication.
-router.get("/auth/login/success", async (req, res) => {
-  try {
-    if (req.user) {
-      const existingUser = await User.findOne({ email: req.user.emails[0].value.toUpperCase() });
+  // Route for post-authentication processing after successful Google OAuth authentication.
+  router.get("/auth/login/success", async (req, res) => {
+    try {
+      if (req.user) {
+        const existingUser = await User.findOne({ email: req.user.emails[0].value.toUpperCase() });
 
-      // If the user exists in the database, redirect them to the client's main page.
-      // If the user doesn't exist, create a new user, save them to the database, and then redirect to the client's main page.
-      if (existingUser) {
-        res.redirect(`${process.env.CLIENT_URL}`);
+        // If the user exists in the database, redirect them to the client's main page.
+        // If the user doesn't exist, create a new user, save them to the database, and then redirect to the client's main page.
+        if (existingUser) {
+          res.redirect(`${process.env.CLIENT_URL}`);
+        } else {
+          const user = new User({
+            email: req.user.emails[0].value.toUpperCase(),
+            password: "password_placeholder",
+          });
+          await user.save();
+          res.redirect(`${process.env.CLIENT_URL}`);
+        }
+        
       } else {
-        const user = new User({
-          email: req.user.emails[0].value.toUpperCase(),
-          password: "password_placeholder",
-        });
-        await user.save();
-        res.redirect(`${process.env.CLIENT_URL}`);
+        res.status(403).json({ error: true, message: "Not Authorized" });
       }
-      
-    } else {
-      res.status(403).json({ error: true, message: "Not Authorized" });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({ message: "Server error" });
     }
-  } catch (err) {
-    console.log(err);
-    res.status(500).send({ message: "Server error" });
-  }
-});
+  });
 
 // Handles user log-out. It logs the user out of the session and sends a success message if successful.
 router.get("/log-out", (req, res, next) => {
