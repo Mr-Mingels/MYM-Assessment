@@ -34,32 +34,38 @@ app.use(
 
 app.use(localStrategy);
 app.use(passportSession);
-app.use(authRoutes);
-app.use(nasaAPIRoutes)
 
-connectToMongoDb();
+const startServer = async () => {
+  // Connect to MongoDB first
+  await connectToMongoDb(); 
 
-// Checks if user is logged in. If the user is logged in it'll send the users email to the client side, if not send a 401 Unauthorized error
-app.get("/user-info", (req, res) => {
-  if (req.isAuthenticated()) {
-    if (req.user.provider === 'google') {
-        res.status(200).json(req.user.emails[0].value);
+  app.use(authRoutes);
+  app.use(nasaAPIRoutes);
+
+  // Checks if user is logged in. If the user is logged in, it'll send the user's email to the client side; otherwise, send a 401 Unauthorized error
+  app.get("/user-info", (req, res) => {
+    if (req.isAuthenticated()) {
+      if (req.user.provider === 'google') {
+          res.status(200).json(req.user.emails[0].value);
+      } else {
+          res.status(200).json(req.user.email);
+      }
     } else {
-        res.status(200).json(req.user.email);
+      res.status(401).send("Unauthorized");
     }
-  } else {
-    res.status(401).send("Unauthorized");
-  }
-});
+  });
 
-app.use(express.static(path.join(__dirname, '../../build')));
+  app.use(express.static(path.join(__dirname, '../../build')));
 
-// Handle any remaining requests by serving the client's index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../build', 'index.html'));
-});
+  // Handle any remaining requests by serving the client's index.html
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+startServer();

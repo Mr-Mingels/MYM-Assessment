@@ -34,7 +34,9 @@ const Main: FC<MainProps> = ({ imageData }) => {
             }
         } catch (err: any) {
             console.log(err)
-            navigate('/auth')
+            if (err.response.data === 'Unauthorized' && err.response.status === 401) {
+                navigate('/auth')
+            }
         }
     }
 
@@ -45,7 +47,7 @@ const Main: FC<MainProps> = ({ imageData }) => {
     // Disables the default scrolling behavior when the loader is set to true and re-enables it when it's set to false.
     // This is purely a stylistic decision, as I find the default scrollbar appearance unattractive when the loader is active
     useEffect(() => {
-        if (!imgLoaded && userEmail === '') {
+        if (!imgLoaded || userEmail === '') {
             document.body.style.overflowY = 'hidden';
         } else {
             document.body.style.overflowY = 'auto';
@@ -57,14 +59,14 @@ const Main: FC<MainProps> = ({ imageData }) => {
             <NavBar userEmail={userEmail} />
             <div className='mainContent'>
                 <h1 className='mainHeaderTxt'>Image of the day:</h1>
-                <img onLoad={() => setImgLoaded(false)} src={`${imageData?.hdurl}`} className='mainImg' onMouseDown={(e) => e.preventDefault()} alt='img of the day' />
+                <img onLoad={() => setImgLoaded(true)} src={`${imageData?.hdurl}`} className='mainImg' onMouseDown={(e) => e.preventDefault()} alt='img of the day' />
                 <div className='mainImgInfoWrapper'>
                     <h2 className='mainImgTitle'>{imageData?.title}</h2>
                     <p className='mainImgDescTxt'>{imageData?.explanation}</p>
                     <span className='mainCopyRightTxt'>Copy right: {imageData?.copyright === null ? imageData?.copyright : 'No copyright is claimed in this work'}</span>
                 </div>
             </div>
-            {!imgLoaded && userEmail === '' && (
+            {(!imgLoaded || userEmail === '') && (
                 <div className='mainLoaderWrapper'>
                     <span className='mainLoader'></span>
                 </div>
